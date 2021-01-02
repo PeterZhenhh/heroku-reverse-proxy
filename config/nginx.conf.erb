@@ -20,17 +20,7 @@ http {
 		listen <%= ENV["PORT"] %>;
 
 		location / {
-			proxy_pass <%= ENV["DEFULT_SERVER"] %>;
-			proxy_http_version 1.1;
-			proxy_buffering off;
-		}
-		location ^~ /emby1/ {
-			proxy_pass <%= ENV["EMBY_SERVER1"] %>;
-			proxy_http_version 1.1;
-			proxy_buffering off;
-		}
-		location ^~ /emby2/ {
-			proxy_pass <%= ENV["EMBY_SERVER2"] %>;
+			proxy_pass <%= ENV["UPSTREAM_SERVER"] %>;
 			proxy_http_version 1.1;
 			proxy_buffering off;
 		}
