@@ -20,7 +20,7 @@ http {
 		listen <%= ENV["PORT"] %>;
 		server_name  heroku.emby1.eu.peterz.ml;
 
-		location / {
+		location /baidu/ {
 			proxy_pass <%= ENV["UPSTREAM_SERVER1"] %>;
 			proxy_http_version 1.1;
 			proxy_buffering off;
@@ -36,7 +36,7 @@ server {
 		listen <%= ENV["PORT"] %>;
 		server_name  heroku.emby2.eu.peterz.ml;
 
-		location / {
+		location /google/ {
 			proxy_pass <%= ENV["UPSTREAM_SERVER2"] %>;
 			proxy_http_version 1.1;
 			proxy_buffering off;
