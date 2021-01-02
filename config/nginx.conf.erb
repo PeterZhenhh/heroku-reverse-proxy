@@ -18,9 +18,26 @@ http {
 
 	server {
 		listen <%= ENV["PORT"] %>;
+		server_name  heroku.emby1.eu.peterz.ml;
 
 		location / {
-			proxy_pass <%= ENV["UPSTREAM_SERVER"] %>;
+			proxy_pass <%= ENV["UPSTREAM_SERVER1"] %>;
+			proxy_http_version 1.1;
+			proxy_buffering off;
+		}
+
+		# This forces HTTPS but we don't want that, we'll stay on port 80 http
+		# if ($http_x_forwarded_proto != "https") {
+		#   rewrite ^(.*)$ https://$host$1 permanent;
+		# }
+	}
+
+server {
+		listen <%= ENV["PORT"] %>;
+		server_name  heroku.emby2.eu.peterz.ml;
+
+		location / {
+			proxy_pass <%= ENV["UPSTREAM_SERVER2"] %>;
 			proxy_http_version 1.1;
 			proxy_buffering off;
 		}
